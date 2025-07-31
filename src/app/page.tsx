@@ -1,95 +1,85 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+
+import { useState } from 'react';
+import styles from './page.module.css';
+import TodoList from './components/TodoList';
+import TodoInput from './components/TodoInput';
+import TodoHeader from './components/TodoHeader';
+
+export interface Todo {
+  id: string;
+  text: string;
+  completed: boolean;
+}
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [todos, setTodos] = useState<Todo[]>([]);
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+  const addTodo = (text: string) => {
+    if (text.trim()) {
+      const newTodo: Todo = {
+        id: Date.now().toString(),
+        text: text.trim(),
+        completed: false,
+      };
+      setTodos([...todos, newTodo]);
+    }
+  };
+
+  const toggleTodo = (id: string) => {
+    setTodos(todos.map(todo =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    ));
+  };
+
+  const deleteTodo = (id: string) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
+  const editTodo = (id: string, newText: string) => {
+    if (newText.trim()) {
+      setTodos(todos.map(todo =>
+        todo.id === id ? { ...todo, text: newText.trim() } : todo
+      ));
+    }
+  };
+
+  const activeTodos = todos.filter(todo => !todo.completed);
+  const completedTodos = todos.filter(todo => todo.completed);
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <TodoHeader />
+      </div>
+      
+      <div className={styles.contents}>
+        <div className={styles.body}>
+          <TodoInput onAddTodo={addTodo} />
+          
+          <div className={styles.content}>
+            <div className={styles.todoSection}>
+              <h2 className={styles.sectionTitle}>TO DO</h2>
+              <TodoList
+                todos={activeTodos}
+                onToggleTodo={toggleTodo}
+                onDeleteTodo={deleteTodo}
+                onEditTodo={editTodo}
+              />
+            </div>
+            
+            <div className={styles.doneSection}>
+              <h2 className={styles.sectionTitle}>DONE</h2>
+              <TodoList
+                todos={completedTodos}
+                onToggleTodo={toggleTodo}
+                onDeleteTodo={deleteTodo}
+                onEditTodo={editTodo}
+              />
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
     </div>
   );
 }
