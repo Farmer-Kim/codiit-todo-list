@@ -11,9 +11,10 @@ interface TodoListProps {
   onDeleteTodo: (id: string) => void;
   onEditTodo: (id: string, text: string) => void;
   type?: 'todo' | 'done';
+  mode?: 'simple' | 'detail';
 }
 
-export default function TodoList({ todos, onToggleTodo, onDeleteTodo, onEditTodo, type = 'todo' }: TodoListProps) {
+export default function TodoList({ todos, onToggleTodo, onDeleteTodo, onEditTodo, type = 'todo', mode = 'detail' }: TodoListProps) {
   if (todos.length === 0) {
     if (type === 'todo') {
       return (
@@ -45,8 +46,9 @@ export default function TodoList({ todos, onToggleTodo, onDeleteTodo, onEditTodo
           key={todo.id}
           todo={todo}
           onToggle={onToggleTodo}
-          onDelete={onDeleteTodo}
-          onEdit={onEditTodo}
+          // onDelete={onDeleteTodo}
+          // onEdit={onEditTodo}
+          mode={mode}
         />
       ))}
     </div>

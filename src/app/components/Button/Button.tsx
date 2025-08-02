@@ -33,7 +33,8 @@ const Button: React.FC<ButtonProps> = ({
     styles[variant],
     styles[size],
     iconType && styles[`icon-${iconType}`],
-    iconOnly && styles.iconOnly,
+    iconOnly && styles.
+    iconOnly,
     disabled && styles.disabled,
     active && styles.active,
     className,

@@ -1,13 +1,15 @@
 .todoItem {
   display: flex;
   align-items: center;
+  justify-content: center;
   background: white;
-  border-radius: 12px;
+  border-radius: 27px;
   padding: 1rem 1.25rem;
   margin-bottom: 0.75rem;
-  border: 2px solid #e5e7eb;
+  border: 2px solid var(--color-slate-900);
   transition: all 0.2s ease;
   gap: 1rem;
+  text-align: center;
 }
 
 .todoItem:hover {
@@ -15,23 +17,54 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.todoItem.completed {
-  background: #f3f4f6;
-  border-color: #8B5CF6;
+.todoItem.completed:not(.simple) {
+  background: var(--color-violet-200);
+  border-color: var(--color-slate-900);
+}
+
+/* 단순 모드 스타일 */
+.todoItem.simple {
+  height: 50px;
+  padding: 0 1rem;
+  border: 2px solid #0F172A;
+  border-radius: 27px;
+  margin-bottom: 0.5rem;
+  gap: 0.75rem;
+  background: #FFFFFF;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.todoItem.simple:hover {
+  border-color: #0F172A;
+  box-shadow: none;
+}
+
+.todoItem.simple.completed {
+  background: var(--color-violet-100);
+  border-color: #0F172A;
 }
 
 .checkbox {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
   border: 2px solid #d1d5db;
   border-radius: 50%;
   background: transparent;
   cursor: pointer;
   transition: all 0.2s ease;
   flex-shrink: 0;
+  user-select: none;
+  outline: none;
+  flex: 0 0 32px;
+}
+
+.checkbox:focus {
+  outline: 2px solid #8B5CF6;
+  outline-offset: 2px;
 }
 
 .checkbox:hover {
@@ -39,19 +72,72 @@
   background: rgba(139, 92, 246, 0.1);
 }
 
-.todoItem.completed .checkbox {
-  background: #8B5CF6;
-  border-color: #8B5CF6;
+.todoItem.completed:not(.simple) .checkbox {
+  /* background: #8B5CF6; */
+  /* border-color: #8B5CF6; */
   color: white;
 }
 
+/* 단순 모드 체크박스 */
+.todoItem.simple .checkbox {
+  width: 32px;
+  height: 32px;
+  border: none;
+}
+
+.todoItem.simple .checkbox:hover {
+  background: rgba(15, 23, 42, 0.1);
+}
+
+.todoItem.simple.completed .checkbox {
+  background: transparent;
+  border-color: transparent;
+  color: white;
+}
+
+/* 단순 모드에서도 체크 이미지 적용 */
+.todoItem.simple .checkbox:not(.checked) {
+  background-image: url('../assets/icons/checkbox/Property\ 1=Default.svg');
+  background-size: 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.todoItem.simple .checkbox.checked {
+  background-image: url('../assets/icons/checkbox/Property\ 1=Frame\ 2610233.svg');
+  background-size: 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.checkbox:not(.checked) {
+  background-image: url('../assets/icons/checkbox/Property\ 1=Default.svg');
+  background-size: 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.checkbox.checked {
+  background-image: url('../assets/icons/checkbox/Property\ 1=Frame\ 2610233.svg');
+  background-size: 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .content {
-  flex: 1;
+  flex: 0 1 auto;
   min-width: 0;
+  text-align: center;
+}
+
+/* 단순 모드에서는 왼쪽 정렬 */
+.todoItem.simple .content {
+  text-align: left;
+  flex: 1;
 }
 
 .text {
-  color: #374151;
+  color: var(--color-slate-900);
   font-size: 1rem;
   line-height: 1.5;
   word-break: break-word;
@@ -59,8 +145,35 @@
 }
 
 .todoItem.completed .text {
-  color: #6b7280;
+  color: var(--color-slate-900);
   text-decoration: line-through;
+}
+
+/* 디테일 모드에서는 밑줄 */
+.todoItem:not(.simple) .text {
+  text-decoration: underline;
+}
+
+/* 단순 모드 텍스트 */
+.todoItem.simple .text {
+  font-size: 1rem;
+  cursor: default;
+  color: var(--color-slate-800);
+  font-weight: 500;
+}
+
+.todoItem.simple.completed .text {
+  font-family: NanumSquare;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  leading-trim: NONE;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: line-through;
+  color: var(--color-slate-800);
 }
 
 .editInput {
@@ -121,6 +234,17 @@
   
   .actions {
     opacity: 1;
+  }
+  
+  /* 모바일에서 단순 모드 */
+  .todoItem.simple {
+    height: 50px;
+    padding: 0 0.875rem;
+    gap: 0.75rem;
+  }
+  
+  .todoItem.simple .text {
+    font-size: 0.95rem;
   }
 }
 

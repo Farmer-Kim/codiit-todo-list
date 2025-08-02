@@ -25,6 +25,13 @@ export default function TodoInput({ onAddTodo }: TodoInputProps) {
     }
   };
 
+  const handleButtonClick = () => {
+    if (text.trim()) {
+      onAddTodo(text);
+      setText('');
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.inputWrapper}>
@@ -36,11 +43,11 @@ export default function TodoInput({ onAddTodo }: TodoInputProps) {
           placeholder="할 일을 입력해주세요"
           className={styles.input}
         />
-         <Button
-            variant="secondary" 
-            onClick={() => {}}
-            iconType="plus"
-          >
+        <Button
+          variant={text.trim().length > 0 ? "primary" : "secondary"}
+          onClick={handleButtonClick}
+          iconType="plus"
+        >
           추가하기
         </Button>
       </div>

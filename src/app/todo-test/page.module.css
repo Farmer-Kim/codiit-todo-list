@@ -1,0 +1,196 @@
+.container {
+  min-height: 100vh;
+  background: #F3F4F6;
+  padding: 2rem;
+  font-family: 'NanumSquare', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1F2937;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  font-size: 1.125rem;
+  color: #6B7280;
+  margin: 0;
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.modeToggle {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  border: 2px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.modeButton {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #e5e7eb;
+  background: white;
+  color: #6b7280;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.modeButton:hover {
+  border-color: #8B5CF6;
+  color: #8B5CF6;
+  background: #f8fafc;
+}
+
+.modeButton.active {
+  background: #8B5CF6;
+  border-color: #8B5CF6;
+  color: white;
+}
+
+.modeInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.modeLabel {
+  font-weight: 500;
+  color: #6B7280;
+}
+
+.modeValue {
+  font-weight: 600;
+  color: #8B5CF6;
+  padding: 0.25rem 0.75rem;
+  background: #F3F4F6;
+  border-radius: 6px;
+}
+
+.testSection {
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1F2937;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.todoList {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.infoSection {
+  margin-bottom: 2rem;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.infoCard {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.infoTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1F2937;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.infoList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.infoList li {
+  padding: 0.5rem 0;
+  color: #6B7280;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.infoList li::before {
+  content: '•';
+  color: #8B5CF6;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .description {
+    font-size: 1rem;
+  }
+  
+  .modeToggle {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .modeButton {
+    min-width: auto;
+  }
+  
+  .infoGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .todoList {
+    padding: 1rem;
+  }
+  
+  .infoCard {
+    padding: 1rem;
+  }
+} 
