@@ -92,7 +92,7 @@ export default function TodoItem({ todo, onToggle, onDelete, onEdit }: TodoItemP
           </svg>
         </button>
         <button
-          className={styles.actionButton}
+          className={`${styles.actionButton} ${styles.deleteButton}`}
           onClick={() => onDelete(todo.id)}
           aria-label="삭제"
         >

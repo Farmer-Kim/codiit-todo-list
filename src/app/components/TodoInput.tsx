@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Button from './Button/Button';
 import styles from './TodoInput.module.css';
 
 interface TodoInputProps {
@@ -18,20 +19,31 @@ export default function TodoInput({ onAddTodo }: TodoInputProps) {
     }
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && text.trim()) {
+      handleSubmit(e as any);
+    }
+  };
+
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <div className={styles.inputContainer}>
+    <div className={styles.container}>
+      <div className={styles.inputWrapper}>
         <input
           type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
+          onKeyPress={handleKeyPress}
           placeholder="할 일을 입력해주세요"
           className={styles.input}
         />
-        <button type="submit" className={styles.addButton}>
-          + 추가하기
-        </button>
+         <Button
+            variant="secondary" 
+            onClick={() => {}}
+            iconType="plus"
+          >
+          추가하기
+        </Button>
       </div>
-    </form>
+    </div>
   );
 } 

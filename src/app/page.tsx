@@ -59,22 +59,24 @@ export default function Home() {
           
           <div className={styles.content}>
             <div className={styles.todoSection}>
-              <h2 className={styles.sectionTitle}>TO DO</h2>
+              <div className={`${styles.sectionTitle} ${styles.todoTitle}`}></div>
               <TodoList
                 todos={activeTodos}
                 onToggleTodo={toggleTodo}
                 onDeleteTodo={deleteTodo}
                 onEditTodo={editTodo}
+                type="todo"
               />
             </div>
             
             <div className={styles.doneSection}>
-              <h2 className={styles.sectionTitle}>DONE</h2>
+              <div className={`${styles.sectionTitle} ${styles.doneTitle}`}></div>
               <TodoList
                 todos={completedTodos}
                 onToggleTodo={toggleTodo}
                 onDeleteTodo={deleteTodo}
                 onEditTodo={editTodo}
+                type="done"
               />
             </div>
           </div>

@@ -3,42 +3,58 @@
   background: #FFFFFF;
   width: 100%;
   height: 60px;
-  border-bottom: 1px solid #E2E8F0;
+  border-bottom: 1px solid var(--color-slate-200);
   display: flex;
 }
 
 .headerContent {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-left: 350px;
+  justify-content: space-between;
+  margin-left: 18.75%;
+  margin-right: 24px;
 }
 
 .logo {
   width: 151px;
   height: 40px;
-  background-image: url('../assetes/images/logo/Size=Large.svg');
+  background-image: url('../assets/images/logo/Size=Large.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-/* 반응형 미디어 쿼리 */
-@media (max-width: 1023px) {
+/* 1920px 이상에서의 스타일 */
+@media (min-width: 1920px) {
   .headerContent {
-    margin-left: 24px;
-    justify-content: flex-start;
+    margin-left: 400px;
+    margin-right: 400px;
   }
 }
 
-@media (max-width: 767px) {
+
+/* 반응형 미디어 쿼리 */
+@media (max-width: 745px) {
+  .headerContent {
+    margin-left: 24px;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 376px) {
   .headerContent {
     margin-left: 16px;
-    justify-content: flex-start;
+    margin-right: 16px;
+    justify-content: space-between;
   }
   
   .logo {
     width: 71px;
-    background-image: url('../assetes/images/logo/Size=Small.svg');
+    background-image: url('../assets/images/logo/Size=Small.svg');
+  }
+  
+  .navLink {
+    padding: 6px 10px;
+    font-size: 12px;
   }
 } 
