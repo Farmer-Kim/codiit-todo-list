@@ -5,6 +5,7 @@ import { useRouter, useParams } from 'next/navigation';
 import styles from './page.module.css';
 import { Todo } from '../../page';
 import TodoItem from '@/app/components/TodoItem';
+import Button from '@/app/components/Button/Button';
 
 export default function TodoDetailPage() {
   const router = useRouter();
@@ -156,18 +157,23 @@ export default function TodoDetailPage() {
 
         {/* 액션 버튼들 */}
         <div className={styles.actionButtons}>
-          <button
-            className={styles.saveButton}
+
+        <Button 
+            variant={imagePreview || editMemo.trim() ? "success" : "secondary"}
             onClick={handleSave}
+            iconType="check"
           >
-            ✓ 수정 완료
-          </button>
-          <button
-            className={styles.deleteButton}
+            수정 완료
+          </Button>  
+
+        <Button 
+            variant="danger" 
             onClick={handleDelete}
+            iconType="x"
           >
-            ✕ 삭제하기
-          </button>
+            삭제하기
+          </Button>
+          
         </div>
       </div>
     </div>

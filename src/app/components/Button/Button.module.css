@@ -270,7 +270,7 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 376px) {
   .small {
     padding: 10px 14px;
     font-size: 15px;
@@ -313,10 +313,8 @@
     height: 24px;
   }
   
-  /* 모바일에서 텍스트 숨기기 */
+  /* 모바일에서 텍스트 숨기기 - check와 x는 제외 */
   .icon-plus:not(.iconOnly) .text,
-  .icon-check:not(.iconOnly) .text,
-  .icon-x:not(.iconOnly) .text,
   .icon-edit:not(.iconOnly) .text {
     display: none;
   }

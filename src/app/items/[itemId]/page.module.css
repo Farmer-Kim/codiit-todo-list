@@ -12,7 +12,7 @@
   margin: 0 18.75%;
   height: calc(100vh - 60px);
   background-color: white;
-  padding: 2rem;
+  padding: 2rem 6.375rem;
   display: flex;
   flex-direction: column;
 }
@@ -21,7 +21,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 /* 할 일 항목 */
@@ -58,7 +58,6 @@
 .sectionsContainer {
   display: flex;
   gap: 2rem;
-  flex: 1;
 }
 
 /* 이미지 업로드 섹션 */
@@ -66,6 +65,9 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 311px;
 }
 
 .uploadArea {
@@ -76,7 +78,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 200px;
+  height: 311px;
+  width: 100%;
   cursor: pointer;
   transition: border-color 0.2s ease;
   border-style: dashed;
@@ -142,20 +145,24 @@
 
 .imagePreview {
   width: 100%;
-  max-width: 200px;
+  height: 100%;
   border-radius: 8px;
   overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .imagePreview img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  /* object-fit: cover; */
   display: block;
 }
 
 /* 메모 섹션 */
 .memoSection {
-  flex: 1;
+  flex: 1.5;
   display: flex;
   flex-direction: column;
   background-image: url('../../assets/images/memo/memo.svg');
@@ -165,6 +172,7 @@
   border-radius: 8px;
   padding: 1rem;
   position: relative;
+  height: 311px;
 }
 
 .memoHeader {
@@ -195,6 +203,7 @@
 }
 
 .memoTextarea {
+  
   width: 100%;
   border: none;
   outline: none;
@@ -220,40 +229,8 @@
 .actionButtons {
   display: flex;
   gap: 1rem;
-  justify-content: center;
+  justify-content: flex-end;
   padding: 1rem 0;
-}
-
-.saveButton {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  background: #3B82F6;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
-}
-
-.saveButton:hover {
-  background: #2563EB;
-}
-
-.deleteButton {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  background: #EF4444;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
-}
-
-.deleteButton:hover {
-  background: #DC2626;
 }
 
 .loading {
@@ -265,7 +242,7 @@
   color: #6b7280;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 745px) {
   .content {
     width: calc(100% - 2rem);
     margin: 0 1rem;
@@ -278,6 +255,6 @@
   }
   
   .actionButtons {
-    flex-direction: column;
+    justify-content: center;
   }
 } 
