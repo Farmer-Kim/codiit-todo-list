@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './TodoItem.module.css';
 import { Todo } from '../page';
 
@@ -11,6 +12,7 @@ interface TodoItemProps {
 }
 
 export default function TodoItem({ todo, onToggle, mode = 'detail' }: TodoItemProps) {
+  const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(todo.text);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -47,6 +49,12 @@ export default function TodoItem({ todo, onToggle, mode = 'detail' }: TodoItemPr
     }
   };
 
+  const handleItemClick = () => {
+    if (mode === 'simple') {
+      router.push(`/items/${todo.id}`);
+    }
+  };
+
   return (
     <div className={`${styles.todoItem} ${todo.completed ? styles.completed : ''} ${mode === 'simple' ? styles.simple : ''}`}>
       <div
@@ -78,7 +86,8 @@ export default function TodoItem({ todo, onToggle, mode = 'detail' }: TodoItemPr
           <span 
             className={styles.text} 
             onDoubleClick={handleEdit}
-            style={{ cursor: mode === 'detail' ? 'text' : 'default' }}
+            onClick={handleItemClick}
+            style={{ cursor: mode === 'simple' ? 'pointer' : 'text' }}
           >
             {todo.text}
           </span>

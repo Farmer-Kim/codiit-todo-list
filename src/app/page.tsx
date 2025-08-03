@@ -10,10 +10,38 @@ export interface Todo {
   id: string;
   text: string;
   completed: boolean;
+  memo?: string;
+  imageUrl?: string;
 }
 
 export default function Home() {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([
+    {
+      id: '1',
+      text: '비타민 챙겨 먹기',
+      completed: false
+    },
+    {
+      id: '2', 
+      text: '운동하기',
+      completed: true
+    },
+    {
+      id: '3',
+      text: '독서하기',
+      completed: false
+    },
+    {
+      id: '4',
+      text: '장보기',
+      completed: true
+    },
+    {
+      id: '5',
+      text: '코딩 공부하기',
+      completed: false
+    }
+  ]);
 
   const addTodo = (text: string) => {
     if (text.trim()) {
@@ -48,37 +76,33 @@ export default function Home() {
   const completedTodos = todos.filter(todo => todo.completed);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <TodoHeader />
-      </div>
-      
-      <div className={styles.contents}>
-        <div className={styles.body}>
-          <TodoInput onAddTodo={addTodo} />
+    <div className={styles.contents}>
+      <div className={styles.body}>
+        <TodoInput onAddTodo={addTodo} />
+        
+        <div className={styles.content}>
+          <div className={styles.todoSection}>
+            <div className={`${styles.sectionTitle} ${styles.todoTitle}`}></div>
+            <TodoList
+              todos={activeTodos}
+              onToggleTodo={toggleTodo}
+              onDeleteTodo={deleteTodo}
+              onEditTodo={editTodo}
+              type="todo"
+              mode="simple"
+            />
+          </div>
           
-          <div className={styles.content}>
-            <div className={styles.todoSection}>
-              <div className={`${styles.sectionTitle} ${styles.todoTitle}`}></div>
-              <TodoList
-                todos={activeTodos}
-                onToggleTodo={toggleTodo}
-                onDeleteTodo={deleteTodo}
-                onEditTodo={editTodo}
-                type="todo"
-              />
-            </div>
-            
-            <div className={styles.doneSection}>
-              <div className={`${styles.sectionTitle} ${styles.doneTitle}`}></div>
-              <TodoList
-                todos={completedTodos}
-                onToggleTodo={toggleTodo}
-                onDeleteTodo={deleteTodo}
-                onEditTodo={editTodo}
-                type="done"
-              />
-            </div>
+          <div className={styles.doneSection}>
+            <div className={`${styles.sectionTitle} ${styles.doneTitle}`}></div>
+            <TodoList
+              todos={completedTodos}
+              onToggleTodo={toggleTodo}
+              onDeleteTodo={deleteTodo}
+              onEditTodo={editTodo}
+              type="done"
+              mode="simple"
+            />
           </div>
         </div>
       </div>
