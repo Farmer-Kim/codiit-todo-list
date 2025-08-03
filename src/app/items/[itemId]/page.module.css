@@ -1,0 +1,283 @@
+.container {
+  background: #F3F4F6;
+  padding: 2rem;
+  font-family: 'NanumSquare', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+
+.content {
+  width: calc(100% - 37.5%);
+  margin: 0 18.75%;
+  height: calc(100vh - 60px);
+  background-color: white;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.todoCard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* 할 일 항목 */
+.todoItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+}
+
+.checkbox {
+  flex-shrink: 0;
+}
+
+.checkboxInput {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.todoText {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  font-family: inherit;
+  background: transparent;
+}
+
+/* 섹션 컨테이너 */
+.sectionsContainer {
+  display: flex;
+  gap: 2rem;
+  flex: 1;
+}
+
+/* 이미지 업로드 섹션 */
+.imageSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.uploadArea {
+  border: 2px dashed var(--color-slate-300);
+  border-radius: 24px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  border-style: dashed;
+  border-width: 2px;
+  background-color: #F8FAFC;
+  opacity: 1;
+  position: relative;
+}
+
+.uploadArea:hover {
+  border-color: #8B5CF6;
+}
+
+.uploadPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.uploadIcon {
+  width: 64px;
+  height: 64px;
+  background-image: url('../../assets/icons/none/img.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.uploadButton {
+  width: 64px;
+  height: 64px;
+  border: 2px solid var(--color-slate-200);
+  background: var(--color-slate-200);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 10;
+  background-image: url('../../assets/icons/plus/Property 1=Variant2.svg');
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.uploadButton:hover {
+  background: #8B5CF6;
+}
+
+.hiddenFileInput {
+  display: none;
+}
+
+.uploadLabel {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.imagePreview {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.imagePreview img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 메모 섹션 */
+.memoSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-image: url('../../assets/images/memo/memo.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 8px;
+  padding: 1rem;
+  position: relative;
+}
+
+.memoHeader {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.memoTitle {
+  color: var(--color-amber-800);
+  font-size: 16px;
+  font-family: NanumSquare;
+  font-weight: 800;
+  font-style: ExtraBold;
+  leading-trim: NONE;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+
+}
+
+.memoTextareaContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+}
+
+.memoTextarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-slate-800);
+  resize: none;
+  font-family: NanumSquare;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  letter-spacing: 0%;
+  text-align: center;
+  padding: 1rem;
+  line-height: 1.5;
+}
+
+.memoTextarea::placeholder {
+  color: #92400E;
+  opacity: 0.7;
+}
+
+/* 액션 버튼들 */
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.saveButton {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: #3B82F6;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.saveButton:hover {
+  background: #2563EB;
+}
+
+.deleteButton {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: #EF4444;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.deleteButton:hover {
+  background: #DC2626;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px);
+  font-size: 1.125rem;
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .content {
+    width: calc(100% - 2rem);
+    margin: 0 1rem;
+    padding: 1rem;
+  }
+  
+  .sectionsContainer {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .actionButtons {
+    flex-direction: column;
+  }
+} 
