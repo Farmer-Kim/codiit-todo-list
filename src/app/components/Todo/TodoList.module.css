@@ -25,11 +25,11 @@
 }
 
 .emptyTodo .emptyImage {
-  background-image: url('../assets/empty/Type=Todo, Size=Large.svg');
+  background-image: url('../../assets/empty/Type=Todo, Size=Large.svg');
 }
 
 .emptyDone .emptyImage {
-  background-image: url('../assets/empty/Type=Done, Size=Large.svg');
+  background-image: url('../../assets/empty/Type=Done, Size=Large.svg');
 }
 
 .emptyText {

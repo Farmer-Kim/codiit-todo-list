@@ -1,20 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import React, { memo } from 'react';
 import TodoItem from './TodoItem';
+import { Todo, TodoListProps } from '@/types/todo';
 import styles from './TodoList.module.css';
-import { Todo } from '../page';
 
-interface TodoListProps {
-  todos: Todo[];
-  onToggleTodo: (id: string) => void;
-  onDeleteTodo: (id: string) => void;
-  onEditTodo: (id: string, text: string) => void;
-  type?: 'todo' | 'done';
-  mode?: 'simple' | 'detail';
-}
-
-export default function TodoList({ todos, onToggleTodo, onDeleteTodo, onEditTodo, type = 'todo', mode = 'detail' }: TodoListProps) {
+const TodoList = memo<TodoListProps>(({ todos, onToggleTodo, type, mode = "simple" }) => {
   if (todos.length === 0) {
     if (type === 'todo') {
       return (
@@ -41,16 +32,18 @@ export default function TodoList({ todos, onToggleTodo, onDeleteTodo, onEditTodo
 
   return (
     <div className={styles.todoList}>
-      {todos.map((todo) => (
+      {todos.map((todo: Todo) => (
         <TodoItem
           key={todo.id}
           todo={todo}
           onToggle={onToggleTodo}
-          // onDelete={onDeleteTodo}
-          // onEdit={onEditTodo}
           mode={mode}
         />
       ))}
     </div>
   );
-} 
+});
+
+TodoList.displayName = 'TodoList';
+
+export default TodoList; 

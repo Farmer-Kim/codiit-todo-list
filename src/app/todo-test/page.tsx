@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import TodoItem from '../components/TodoItem';
-import { Todo } from '../page';
+import TodoItem from '../components/Todo/TodoItem';
+import { Todo } from '@/types/todo';
 import styles from './page.module.css';
 
 export default function TodoTestPage() {
@@ -11,32 +11,32 @@ export default function TodoTestPage() {
   // 테스트용 Todo 데이터
   const testTodos: Todo[] = [
     {
-      id: '1',
-      text: '비타민 챙겨 먹기',
-      completed: false
+      id: 1,
+      name: '비타민 챙겨 먹기',
+      isCompleted: false
     },
     {
-      id: '2', 
-      text: '운동하기',
-      completed: true
+      id: 2, 
+      name: '운동하기',
+      isCompleted: true
     },
     {
-      id: '3',
-      text: '독서하기',
-      completed: false
+      id: 3,
+      name: '독서하기',
+      isCompleted: false
     },
     {
-      id: '4',
-      text: '장보기',
-      completed: true
+      id: 4,
+      name: '장보기',
+      isCompleted: true
     }
   ];
 
   const [todos, setTodos] = useState<Todo[]>(testTodos);
 
-  const toggleTodo = (id: string) => {
+  const toggleTodo = (id: number) => {
     setTodos(todos.map(todo =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
     ));
   };
 

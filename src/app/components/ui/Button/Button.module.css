@@ -124,7 +124,7 @@
   display: inline-block;
   width: 20px;
   height: 20px;
-  background-image: url('../../assets/icons/plus/Property 1=plus.svg');
+  background-image: url('../../../assets/icons/plus/Property 1=plus.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -136,7 +136,7 @@
   display: inline-block;
   width: 20px;
   height: 20px;
-  background-image: url('../../assets/icons/check/check.svg');
+  background-image: url('../../../assets/icons/check/check.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -148,7 +148,7 @@
   display: inline-block;
   width: 20px;
   height: 20px;
-  background-image: url('../../assets/icons/X/X.svg');
+  background-image: url('../../../assets/icons/X/X.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -160,7 +160,7 @@
   display: inline-block;
   width: 20px;
   height: 20px;
-  background-image: url('../../assets/icons/edit/edit.svg');
+  background-image: url('../../../assets/icons/edit/edit.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

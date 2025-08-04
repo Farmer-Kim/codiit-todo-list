@@ -1,12 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import Button from './Button/Button';
+import Button from '../ui/Button/Button';
 import styles from './TodoInput.module.css';
-
-interface TodoInputProps {
-  onAddTodo: (text: string) => void;
-}
+import { TodoInputProps } from '@/types/todo';
 
 export default function TodoInput({ onAddTodo }: TodoInputProps) {
   const [text, setText] = useState('');
@@ -21,7 +18,7 @@ export default function TodoInput({ onAddTodo }: TodoInputProps) {
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && text.trim()) {
-      handleSubmit(e as any);
+      handleSubmit(e as React.FormEvent);
     }
   };
 

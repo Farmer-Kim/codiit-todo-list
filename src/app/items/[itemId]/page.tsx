@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
+import Button from '@/app/components/ui/Button/Button';
+import TodoItem from '@/app/components/Todo/TodoItem';
+import { fetchTodo, updateTodo, deleteTodo, uploadImage } from '@/lib/api';
+import { Todo } from '@/types/todo';
 import styles from './page.module.css';
-import { Todo } from '../../page';
-import TodoItem from '@/app/components/TodoItem';
-import Button from '@/app/components/Button/Button';
 
 export default function TodoDetailPage() {
   const router = useRouter();
@@ -13,24 +14,37 @@ export default function TodoDetailPage() {
   const itemId = params.itemId as string;
 
   const [todo, setTodo] = useState<Todo | null>(null);
-  const [isEditing, setIsEditing] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   const [editText, setEditText] = useState('');
   const [editMemo, setEditMemo] = useState('');
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>('');
 
   useEffect(() => {
-    const mockTodo: Todo = {
-      id: itemId,
-      text: '비타민 챙겨 먹기',
-      completed: false,
-      memo: '오메가 3, 프로폴리스, 아연 챙겨먹기',
-      imageUrl: ''
-    };
-    setTodo(mockTodo);
-    setEditText(mockTodo.text);
-    setEditMemo(mockTodo.memo || '');
+    loadTodo();
   }, [itemId]);
+
+  const loadTodo = async () => {
+    try {
+      setLoading(true);
+      console.log('Fetching todo with ID:', itemId);
+      const todoData = await fetchTodo(parseInt(itemId));
+      console.log('Todo API Response:', todoData);
+      setTodo(todoData);
+      setEditText(todoData.name);
+      setEditMemo(todoData.memo || '');
+      setImagePreview(todoData.imageUrl || '');
+      setError(null);
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Todo를 불러오는데 실패했습니다.';
+      setError(errorMessage);
+      console.error('Failed to load todo:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -55,42 +69,89 @@ export default function TodoDetailPage() {
     }
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!todo) return;
 
-    const updatedTodo: Todo = {
-      ...todo,
-      text: editText,
-      memo: editMemo,
-      imageUrl: imagePreview || todo.imageUrl
-    };
+    try {
+      let imageUrl = todo.imageUrl;
+      
+      // 새로 선택된 이미지가 있으면 업로드
+      if (selectedImage) {
+        const uploadResult = await uploadImage(selectedImage);
+        imageUrl = uploadResult.url;
+      }
 
-    console.log('Updated todo:', updatedTodo);
-    
-    setIsEditing(false);
-    setTodo(updatedTodo);
-    
-    router.push('/');
-  };
+      const updatedTodo = await updateTodo(todo.id, {
+        name: editText,
+        memo: editMemo,
+        imageUrl: imageUrl
+      });
 
-  const handleDelete = () => {
-    if (confirm('정말로 이 할 일을 삭제하시겠습니까?')) {
-      console.log('Deleted todo:', itemId);
+      console.log('Updated todo:', updatedTodo);
+      
+
+      setTodo(updatedTodo);
+      
       router.push('/');
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Todo 수정에 실패했습니다.';
+      setError(errorMessage);
+      console.error('Failed to update todo:', err);
     }
   };
 
-  const handleToggleStatus = () => {
-    if (!todo) return;
-    
-    setTodo({
-      ...todo,
-      completed: !todo.completed
-    });
+  const handleDelete = async () => {
+    if (confirm('정말로 이 할 일을 삭제하시겠습니까?')) {
+      try {
+        await deleteTodo(todo!.id);
+        console.log('Deleted todo:', itemId);
+        router.push('/');
+          } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Todo 삭제에 실패했습니다.';
+      setError(errorMessage);
+      console.error('Failed to delete todo:', err);
+    }
+    }
   };
 
-  if (!todo) {
+  const handleToggleStatus = async () => {
+    if (!todo) return;
+    
+    try {
+      const updatedTodo = await updateTodo(todo.id, {
+        isCompleted: !todo.isCompleted
+      });
+      
+      setTodo(updatedTodo);
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Todo 상태 변경에 실패했습니다.';
+      setError(errorMessage);
+      console.error('Failed to toggle todo:', err);
+    }
+  };
+
+  if (loading) {
     return <div className={styles.loading}>로딩 중...</div>;
+  }
+
+  if (error) {
+    return (
+      <div className={styles.content}>
+        <div style={{ textAlign: 'center', padding: '2rem', color: 'red' }}>
+          {error}
+        </div>
+      </div>
+    );
+  }
+
+  if (!todo) {
+    return (
+      <div className={styles.content}>
+        <div style={{ textAlign: 'center', padding: '2rem' }}>
+          Todo를 찾을 수 없습니다.
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -113,7 +174,15 @@ export default function TodoDetailPage() {
              <div className={styles.uploadArea}>
                {imagePreview ? (
                  <div className={styles.imagePreview}>
-                   <img src={imagePreview} alt="미리보기" />
+                   <img 
+                     src={imagePreview} 
+                     alt="미리보기" 
+                     loading="lazy"
+                     onError={(e) => {
+                       console.error('Image load error:', e);
+                       setImagePreview('');
+                     }}
+                   />
                  </div>
                ) : (
                  <div className={styles.uploadPlaceholder}>

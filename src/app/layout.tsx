@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import TodoHeader from "./components/layout/TodoHeader";
 import "./globals.css";
 import "./reset.css";
-import TodoHeader from "./components/TodoHeader";
 
 export const metadata: Metadata = {
   title: "do it; - Todo List",
@@ -23,7 +23,9 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <TodoHeader />
+        <header className="header">
+          <TodoHeader />
+        </header>
         <main className="main-content">
           {children}
         </main>
