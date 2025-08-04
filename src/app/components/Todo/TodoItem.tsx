@@ -12,6 +12,7 @@ const TodoItem = memo<TodoItemProps>(({ todo, onToggle, mode = "simple" }) => {
     if (mode === "simple") {
       router.push(`/items/${todo.id}`);
     }
+    // detail 모드에서는 클릭해도 아무것도 하지 않음
   };
 
   const handleToggle = (e: React.MouseEvent) => {
@@ -21,7 +22,7 @@ const TodoItem = memo<TodoItemProps>(({ todo, onToggle, mode = "simple" }) => {
 
   return (
     <div 
-      className={`${styles.todoItem} ${todo.isCompleted ? styles.completed : ''} ${mode === 'detail' ? styles.detailMode : ''}`}
+      className={`${styles.todoItem} ${todo.isCompleted ? styles.completed : ''} ${mode === 'simple' ? styles.simple : ''}`}
       onClick={handleItemClick}
     >
       <div className={styles.content}>

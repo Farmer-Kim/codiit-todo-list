@@ -4,17 +4,18 @@
   justify-content: center;
   background: white;
   border-radius: 27px;
-  padding: 1rem 1.25rem;
-  /* margin-bottom: 0.75rem; */
-  border: 2px solid var(--color-slate-900);
+  padding: 1.5rem 2rem;
+  border: 3px solid var(--color-slate-900);
   transition: all 0.2s ease;
-  gap: 1rem;
+  gap: 1.5rem;
   text-align: center;
+  cursor: pointer;
 }
 
 .todoItem:hover {
-  border-color: #d1d5db;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-color: #8B5CF6;
+  box-shadow: 0 4px 8px rgba(139, 92, 246, 0.2);
+  transform: translateY(-1px);
 }
 
 .todoItem.completed:not(.simple) {
@@ -49,9 +50,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: 2px solid #d1d5db;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #d1d5db;
   border-radius: 50%;
   background: transparent;
   cursor: pointer;
@@ -59,7 +60,7 @@
   flex-shrink: 0;
   user-select: none;
   outline: none;
-  flex: 0 0 32px;
+  flex: 0 0 40px;
 }
 
 .checkbox:focus {
@@ -112,20 +113,23 @@
 
 .checkbox:not(.checked) {
   background-image: url('../../assets/icons/checkbox/Property\ 1=Default.svg');
-  background-size: 32px;
+  background-size: 40px;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .checkbox.checked {
   background-image: url('../../assets/icons/checkbox/Property\ 1=Frame\ 2610233.svg');
-  background-size: 32px;
+  background-size: 40px;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .content {
+  display: flex;
+  align-items: center;
   flex: 0 1 auto;
+  gap: 1rem;
   min-width: 0;
   text-align: center;
 }
@@ -134,14 +138,22 @@
 .todoItem.simple .content {
   text-align: left;
   flex: 1;
+  justify-content: flex-start;
+}
+
+/* 디테일 모드에서는 중앙 정렬 */
+.todoItem:not(.simple) .content {
+  text-align: center;
+  justify-content: center;
 }
 
 .text {
   color: var(--color-slate-900);
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.5;
   word-break: break-word;
   cursor: text;
+  font-weight: 600;
 }
 
 .todoItem.completed .text {
