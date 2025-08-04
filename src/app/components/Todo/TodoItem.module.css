@@ -10,6 +10,7 @@
   gap: 1.5rem;
   text-align: center;
   cursor: pointer;
+  height: 64px;
 }
 
 .todoItem:hover {
@@ -98,28 +99,28 @@
 
 /* 단순 모드에서도 체크 이미지 적용 */
 .todoItem.simple .checkbox:not(.checked) {
-  background-image: url('../../assets/icons/checkbox/Property\ 1=Default.svg');
+  background-image: url("../../assets/icons/checkbox/Property_1=Default.svg");
   background-size: 32px;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .todoItem.simple .checkbox.checked {
-  background-image: url('../../assets/icons/checkbox/Property\ 1=Frame\ 2610233.svg');
+  background-image: url("../../assets/icons/checkbox/Property_1=Frame_2610233.svg");
   background-size: 32px;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .checkbox:not(.checked) {
-  background-image: url('../../assets/icons/checkbox/Property\ 1=Default.svg');
+  background-image: url("../../assets/icons/checkbox/Property_1=Default.svg");
   background-size: 40px;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .checkbox.checked {
-  background-image: url('../../assets/icons/checkbox/Property\ 1=Frame\ 2610233.svg');
+  background-image: url("../../assets/icons/checkbox/Property_1=Frame_2610233.svg");
   background-size: 40px;
   background-repeat: no-repeat;
   background-position: center;

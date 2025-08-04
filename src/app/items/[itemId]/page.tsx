@@ -183,6 +183,10 @@ export default function TodoDetailPage() {
                        setImagePreview('');
                      }}
                    />
+                   <div 
+                     className={styles.editIcon}
+                     onClick={() => document.getElementById('imageUpload')?.click()}
+                   ></div>
                  </div>
                ) : (
                  <div className={styles.uploadPlaceholder}>
@@ -197,7 +201,7 @@ export default function TodoDetailPage() {
                  id="imageUpload"
                />
                <button 
-                 className={styles.uploadButton}
+                 className={`${styles.uploadButton} ${imagePreview ? styles.editButton : ''}`}
                  onClick={() => document.getElementById('imageUpload')?.click()}
                >
                </button>

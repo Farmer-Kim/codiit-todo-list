@@ -1,7 +1,16 @@
+/**
+ * API 설정
+ */
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://assignment-todolist-api.vercel.app';
 const tenantId = 'daegeon';
 
-// 에러 처리를 위한 헬퍼 함수
+/**
+ * API 에러 처리를 위한 헬퍼 함수
+ * 
+ * @param response - fetch 응답 객체
+ * @param defaultMessage - 기본 에러 메시지
+ * @throws Error - API 에러 또는 기본 에러 메시지
+ */
 async function handleApiError(response: Response, defaultMessage: string) {
   if (!response.ok) {
     try {
@@ -14,6 +23,14 @@ async function handleApiError(response: Response, defaultMessage: string) {
   }
 }
 
+/**
+ * 할 일 목록을 가져오는 함수
+ * 
+ * @param page - 페이지 번호 (기본값: 1)
+ * @param pageSize - 페이지당 항목 수 (기본값: 10)
+ * @returns Promise<TodosResponse> - 할 일 목록 응답
+ * @throws Error - API 에러 시
+ */
 export async function fetchTodos(page: number = 1, pageSize: number = 10) {
   try {
     const res = await fetch(`${BASE_URL}/api/${tenantId}/items?page=${page}&pageSize=${pageSize}`, { 

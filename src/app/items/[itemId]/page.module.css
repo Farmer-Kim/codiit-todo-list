@@ -121,7 +121,7 @@
   bottom: 1rem;
   right: 1rem;
   z-index: 10;
-  background-image: url('../../assets/icons/plus/Property 1=Variant2.svg');
+  background-image: url("../../assets/icons/plus/Property_1=Variant2.svg");
   background-size: 24px;
   background-repeat: no-repeat;
   background-position: center;
@@ -129,6 +129,19 @@
 
 .uploadButton:hover {
   background: #8B5CF6;
+}
+
+.editButton {
+  background-image: url('../../assets/icons/edit/edit.svg');
+  background-color: #0F172A80;
+  border: 2px solid var(--color-slate-900);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.editButton:hover {
+  background-color: #0F172A80;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
 }
 
 .hiddenFileInput {
@@ -158,6 +171,30 @@
   height: 100%;
   /* object-fit: cover; */
   display: block;
+}
+
+.editIcon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  background-image: url('../../assets/icons/edit/edit.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  padding: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.editIcon:hover {
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
 }
 
 /* 메모 섹션 */
