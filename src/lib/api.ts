@@ -2,7 +2,7 @@
  * API 설정
  */
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://assignment-todolist-api.vercel.app';
-const tenantId = 'daegeon';
+const tenantId = process.env.NEXT_PUBLIC_TENANT_ID || 'daegeon';
 
 /**
  * API 에러 처리를 위한 헬퍼 함수

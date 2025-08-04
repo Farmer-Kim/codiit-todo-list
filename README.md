@@ -126,14 +126,15 @@ src/
 
 ```env
 NEXT_PUBLIC_API_URL=https://assignment-todolist-api.vercel.app
+NEXT_PUBLIC_TENANT_ID=daegeon
 ```
 
 ## 📝 API 연동
 
 이 애플리케이션은 외부 REST API와 연동됩니다:
 
-- **Base URL**: `https://assignment-todolist-api.vercel.app`
-- **Tenant ID**: `daegeon`
+- **Base URL**: 환경변수 `NEXT_PUBLIC_API_URL`로 설정 (기본값: `https://assignment-todolist-api.vercel.app`)
+- **Tenant ID**: 환경변수 `NEXT_PUBLIC_TENANT_ID`로 설정 (기본값: `daegeon`)
 - **Endpoints**:
   - `GET /api/{tenantId}/items` - 할 일 목록 조회
   - `GET /api/{tenantId}/items/{id}` - 할 일 상세 조회
